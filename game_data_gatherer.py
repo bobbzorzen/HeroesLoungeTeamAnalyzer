@@ -67,4 +67,3 @@ class GameDataGatherer:
 
         # pp.pprint(teamData)
         return teamData
-
