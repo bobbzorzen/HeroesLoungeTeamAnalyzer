@@ -1,5 +1,4 @@
 import requests
-import pprint
 from bs4 import BeautifulSoup
 
 
@@ -24,7 +23,6 @@ class GameDataGatherer:
         return (team1BansFiltered, team2BansFiltered)
 
     def gatherData(self):
-        pp = pprint.PrettyPrinter(indent=1)
         r = requests.get(self.gameUrl)
         html = r.text
         parsedHTML = BeautifulSoup(html)
@@ -65,5 +63,4 @@ class GameDataGatherer:
             teamData[teamName1].append(team1Data)
             teamData[teamName2].append(team2Data)
 
-        # pp.pprint(teamData)
         return teamData
