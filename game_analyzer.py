@@ -6,18 +6,19 @@ class GameAnalyzer:
     def __add__(self, other):
         pass
 
-    def __init__(self):
-        gameDataGatherer = GameDataGatherer("https://heroeslounge.gg/match/view/4368")
+    def __init__(self, gameUrl):
+        print("Analyzing game: ", gameUrl)
+        gameDataGatherer = GameDataGatherer(gameUrl)
 
         gameData = gameDataGatherer.gatherData()
-        analysis = {}
+        self.analysis = {}
         for team in gameData:
-            analysis[team] = {
+            self.analysis[team] = {
                 "picks": self.getPickSummary(gameData[team]),
                 "bans": self.getBanSummary(gameData[team])
             }
             print("TEAM: ", team)
-            print("Analysis: ", analysis[team])
+            print("Analysis: ", self.analysis[team])
 
     def getPickSummary(self, games):
         summary = {}
@@ -39,5 +40,3 @@ class GameAnalyzer:
                     summary[ban] = {"occurrances": 1}
                 summary[ban]["occurrances"] += 1
         return summary
-
-gameAnalyzer = GameAnalyzer()

@@ -30,6 +30,8 @@ class GameDataGatherer:
         teamData = {}
         for item in gamesData:
             teamNames = item.select(".media-body a")
+            if(len(teamNames) == 0):
+                return {}
             teamName1 = teamNames[0].text.strip()
             teamName2 = teamNames[1].text.strip()
 
