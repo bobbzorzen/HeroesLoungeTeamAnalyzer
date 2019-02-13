@@ -24,10 +24,11 @@ class GameAnalyzer:
         for game in games:
             for pick in game["picks"]:
                 if pick not in summary:
-                    summary[pick] = {"occurrances": 0, "wins": 0}
+                    summary[pick] = {"occurrances": 0, "wins": 0, "winrate": 0}
                 if game["win"]:
                     summary[pick]["wins"] += 1
                 summary[pick]["occurrances"] += 1
+                summary[pick]["winrate"] = int((summary[pick]["wins"] / summary[pick]["occurrances"])*100)
         return summary
 
     def getBanSummary(self, games):
